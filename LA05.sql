@@ -1,0 +1,51 @@
+// Q1. 2개 이상의 조건을 만족하는 결과를 정렬하여 출력
+// -> 이름이 3글자이고, 키가 190 초과인 선수들을 키를 기준으로 정렬
+SELECT PLAYER_ID as "코드", PLAYER_NAME as "이름", POSITION as "포지션", HEIGHT as "키" FROM PLAYER 
+WHERE LENGTH(PLAYER_NAME) = 3
+AND HEIGHT > 190
+ORDER BY HEIGHT ASC;
+
+
+
+// Q2. 카테고리별로 집계 함수 사용 및 기준 값 이상만 출력
+// -> having절로 포지션의 선수가 100명 이상일때, 포지션별로 count 및 최대, 최소 키 계산
+SELECT POSITION as "포지션", COUNT(*) as "선수", MAX(HEIGHT) as "최대 키", MIN(HEIGHT) as "최소 키" FROM PLAYER
+GROUP BY POSITION
+HAVING COUNT(*) >= 100;
+
+
+
+// Q3. 카테고리별로 그룹화하여 집계 함수 사용 및 출력 (null 포함)
+// -> 포지션별 모든 선수 출력(포지션이 null인 데이터도 출력 됨)
+SELECT POSITION as "포지션", COUNT(*) as "선수", MAX(HEIGHT) as "최대 키", MIN(HEIGHT) as "최소 키" FROM PLAYER
+GROUP BY POSITION
+ORDER BY COUNT(*) DESC;
+
+
+
+// Q4. 카테고리별로 그룹화하여 집계 함수 사용 및 출력 (DECODE or CASE 사용하여 3개 이상의 조건)
+// -> 포지션 그룹의 출생 월 마다 평균 키 계산
+SELECT POSITION as "포지션", 
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 1 THEN HEIGHT END) as "1월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 2 THEN HEIGHT END) as "2월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 3 THEN HEIGHT END) as "3월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 4 THEN HEIGHT END) as "4월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 5 THEN HEIGHT END) as "5월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 6 THEN HEIGHT END) as "6월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 7 THEN HEIGHT END) as "7월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 8 THEN HEIGHT END) as "8월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 9 THEN HEIGHT END) as "9월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 10 THEN HEIGHT END) as "10월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 11 THEN HEIGHT END) as "11월",
+    AVG(CASE WHEN EXTRACT(MONTH FROM BIRTH_DATE) = 12 THEN HEIGHT END) as "12월"
+FROM PLAYER
+GROUP BY POSITION;
+
+
+
+// Q5. 조건을 만족하는 상위 5개의 결과만 출력
+// -> 키가 190이상인 선수 중에 출생이 가장 빠른 5명
+SELECT PLAYER_ID as "코드", PLAYER_NAME as "이름", POSITION as "포지션", BIRTH_DATE as "생일", HEIGHT as "키" FROM PLAYER 
+WHERE HEIGHT > 190
+AND ROWNUM <= 5
+ORDER BY BIRTH_DATE ASC;

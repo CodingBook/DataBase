@@ -71,6 +71,8 @@ INSERT INTO Customer VALUES ('c0', 'juinjang', 'password', '010-1234-1234');
 INSERT INTO Customer VALUES ('01', 'customer01', 'qwerty', '010-2345-2345');
 INSERT INTO Customer VALUES ('02', 'customer02', 'bimil',  '010-4444-2323');
 INSERT INTO Customer VALUES ('03', 'customer03', 'beonho', '010-1212-6666');
+INSERT INTO Customer VALUES ('04', 'customer04', 'pretty', '010-6385-0982');
+INSERT INTO Customer VALUES ('05', 'customer05', 'close',  '010-7654-6453');
 
 
 

@@ -55,9 +55,11 @@ create TABLE OrderDetail (
 
 describe OrderDetail;
 
+/*
 drop Table OrderDetail;
 drop Table Contains;
 drop Table Cart;
 drop Table Category; 
 drop Table Food;
 drop Table Customer;
+*/

@@ -1,5 +1,5 @@
-// 5-1. group function
-// ROLLUP() in food, category
+/* 5-1. group function */
+/* ROLLUP() in food, category */
 SELECT
     CASE
         WHEN grouping(c.categoryName) = 1 THEN '종합'
@@ -7,13 +7,13 @@ SELECT
     END as "카테고리",
     SUM(f.price) as "가격 합산"
 FROM    Food f
-JOIN    Contain c ON f.foodName = c.foodName
+JOIN    Contains c ON f.foodName = c.foodName
 GROUP BY ROLLUP(categoryName);
 
 
 
-// 5-1. group function
-// CUBE() in orderdetail
+/* 5-1. group function */
+/* CUBE() in orderdetail */
 SELECT
     CASE
         WHEN grouping(od.foodName) = 1 THEN '종합'
@@ -28,8 +28,8 @@ GROUP BY CUBE(od.foodName);
 
 
 
-// 5-2. WINDOW FUNCTION
-// RANK() OVER in orderdetail
+/* 5-2. WINDOW FUNCTION */
+/* RANK() OVER in orderdetail */
 SELECT
     categoryName as "카테고리",
     totalSales as "총액수",
@@ -42,8 +42,8 @@ FROM (
     
     
 
-// 5-2. WINDOW FUNCTION
-// SUM(), MAX() over (partition by ~) in orderdetail
+/* 5-2. WINDOW FUNCTION  */
+/* SUM(), MAX() over (partition by ~) in orderdetail */
 SELECT
     categoryName as "카테고리",
     sumInCategory as "카테고리 내 총합",

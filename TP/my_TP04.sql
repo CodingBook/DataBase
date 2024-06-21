@@ -95,3 +95,18 @@ INSERT INTO OrderDetail VALUES (6, '00004', 1, 25000, 'steak');
 INSERT INTO OrderDetail VALUES (7, '00005', 2, 20000, 'japchae');
 
 
+
+
+-- 데이터 삽입
+INSERT INTO Food VALUES ('A', 25000);
+
+INSERT INTO Contain VALUES ('A', '과일');
+INSERT INTO Contain VALUES ('A', '한식');
+
+-- 카테고리 업데이트
+UPDATE Category SET noOfFood = noOfFood + 1 WHERE categoryName = '과일';
+UPDATE Category SET noOfFood = noOfFood + 1 WHERE categoryName = '한식';
+
+
+
+
